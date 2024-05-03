@@ -7,25 +7,24 @@ import MainPage from "./components/MainPage";
 import { Box } from "@mui/material";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-function App() {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#556cd6", 
-      },
-      secondary: {
-        main: "#19857b", 
-      },
-      background: {
-        default: "#f4f5fd",
-        paper: "#ffffff",
-      },
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#556cd6",
     },
-  });
-
+    secondary: {
+      main: "#19857b",
+    },
+    background: {
+      default: "#f4f5fd",
+      paper: "#ffffff",
+    },
+  },
+});
+function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", height: "100vh" }}>
         <AppBar position="fixed">
           <Toolbar>
             <Typography variant="h6" noWrap>
@@ -34,7 +33,16 @@ function App() {
           </Toolbar>
         </AppBar>
         <Sidebar />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 8 }}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            pt: `${64}px`,
+            height: "calc(100vh - 64px)",
+            overflow: "auto",
+          }}
+        >
           <MainPage />
         </Box>
       </Box>

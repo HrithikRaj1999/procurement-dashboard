@@ -14,38 +14,67 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
-function HeaderBar({ open, handleDrawerOpen, handleDrawerClose }) {
+function AppBarContent() {
+  return (
+    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+      Procurement
+    </Typography>
+  );
+}
+
+function MenuButton({ onClick }) {
+  return (
+    <IconButton
+      color="inherit"
+      aria-label="open drawer"
+      onClick={onClick}
+      edge="start"
+      sx={{ marginRight: 2 }}
+    >
+      <MenuIcon />
+    </IconButton>
+  );
+}
+
+function SearchButton() {
+  return (
+    <IconButton color="inherit">
+      <SearchIcon />
+    </IconButton>
+  );
+}
+
+function NotificationsButton() {
+  return (
+    <IconButton color="inherit">
+      <Badge badgeContent={4} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+    </IconButton>
+  );
+}
+
+function AccountButton() {
+  return (
+    <Button color="inherit" startIcon={<AccountCircle />}>
+      Daniel Rogers
+    </Button>
+  );
+}
+
+function HeaderBar({ open, handleDrawerClose }) {
   const theme = useTheme();
 
   return (
     <>
-      {" "}
       <CssBaseline />
-      <AppBar position="fixed" open={handleDrawerOpen}>
+      <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerClose}
-            edge="start"
-            sx={{ marginRight: theme.spacing(2) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Procurement
-          </Typography>
-          <IconButton color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <Button color="inherit" startIcon={<AccountCircle />}>
-            Daniel Rogers
-          </Button>
+          <MenuButton onClick={handleDrawerClose} />
+          <AppBarContent />
+          <SearchButton />
+          <NotificationsButton />
+          <AccountButton />
         </Toolbar>
       </AppBar>
     </>

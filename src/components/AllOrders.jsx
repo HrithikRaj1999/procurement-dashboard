@@ -1,14 +1,13 @@
 import React from "react";
 import {
   Box,
-  Card,
-  CardContent,
-  Typography,
+  Card, Typography,
   Chip,
-  Avatar,
+  Avatar
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import Orders from "../contants/Orders";
 
 function OrderCard({
   orderNumber,
@@ -49,94 +48,13 @@ function OrderCard({
 }
 
 function AllOrders() {
-  const orders = [
-    {
-      orderNumber: "4907 - 00019",
-      description: "HOTEL/TECH WORK SQUAD GFR",
-      type: "Services",
-      date: "12 Jul 2019",
-      statusColor: "success.main",
-      statusLabel: "RT",
-    },
-    {
-      orderNumber: "5325 - 00034",
-      description: "SAFETY EQUIPMENT- COMPULSORY SPARES",
-      type: "Consumables",
-      date: "04 Mar 2020",
-      statusColor: "error.main",
-      statusLabel: "TQ",
-    },
-    {
-      orderNumber: "4907 - 00038",
-      description: "EM SPARES FOR INTERSTAGE FILTER UNIT",
-      type: "Spares",
-      date: "26 Jul 2022",
-      statusColor: "primary.main",
-      statusLabel: "EO",
-    },
-    {
-      orderNumber: "5325 - 00040",
-      description: "FUEL/LUBE/AIR/WATER.SEWAGE SYSTEM",
-      type: "Spares",
-      date: "10 Mar 2019",
-      statusColor: "secondary.main",
-      statusLabel: "RT",
-    },
-    {
-      orderNumber: "4907 - 00050",
-      description: "HOBART FX-A-SEF VSP UNDERCOUNTER",
-      type: "Equipment",
-      date: "21 Nov 2019",
-      statusColor: "info.main",
-      statusLabel: "RT",
-    },
-    {
-      orderNumber: "5325 - 00051",
-      description: "EXTERNAL LOAD RIG",
-      type: "Hardware",
-      date: "15 Jan 2021",
-      statusColor: "warning.main",
-      statusLabel: "TQ",
-    },
-    {
-      orderNumber: "4907 - 00056",
-      description: "SERVER UPGRADE IN ZONE 3",
-      type: "Services",
-      date: "03 Feb 2020",
-      statusColor: "success.main",
-      statusLabel: "EO",
-    },
-    {
-      orderNumber: "5325 - 00060",
-      description: "WIRELESS SENSOR NETWORKS FOR DATA ACQUISITION",
-      type: "Equipment",
-      date: "12 Dec 2020",
-      statusColor: "primary.main",
-      statusLabel: "RT",
-    },
-    {
-      orderNumber: "4907 - 00064",
-      description: "PORTABLE DRILLING RIG",
-      type: "Hardware",
-      date: "08 Aug 2019",
-      statusColor: "error.main",
-      statusLabel: "EO",
-    },
-    {
-      orderNumber: "5325 - 00067",
-      description: "REPLACEMENT OF HVAC UNITS",
-      type: "Services",
-      date: "22 Oct 2021",
-      statusColor: "secondary.main",
-      statusLabel: "TQ",
-    },
-  ];
+
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
         All Orders
       </Typography>
-      {orders.map((order, index) => (
+      {Orders.map((order, index) => (
         <OrderCard key={index} {...order} />
       ))}
     </Box>

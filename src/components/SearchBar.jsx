@@ -1,7 +1,51 @@
 import React from 'react';
 import { Box, TextField, Button, IconButton, InputAdornment, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import EqualizerIcon from '@mui/icons-material/Equalizer'; // Using Equalizer icon for sorting
+import EqualizerIcon from '@mui/icons-material/Equalizer'; 
+
+function TextInputWithIcon({ label, endIcon }) {
+    return (
+        <TextField
+            size="small"
+            label={label}
+            variant="outlined"
+            sx={{ flex: 1 }} 
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">
+                        {endIcon}
+                    </InputAdornment>
+                ),
+            }}
+        />
+    );
+}
+
+function SelectInput({ label, value, onChange, options }) {
+    return (
+        <FormControl size="small" variant="outlined" sx={{ minWidth: 120 }}>
+            <InputLabel id="select-label">{label}</InputLabel>
+            <Select
+                labelId="select-label"
+                value={value}
+                onChange={onChange}
+                label={label}
+            >
+                {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                ))}
+            </Select>
+        </FormControl>
+    );
+}
+
+function SearchButton() {
+    return (
+        <Button variant="contained" color="primary" startIcon={<SearchIcon />}>
+            Search
+        </Button>
+    );
+}
 
 function SearchBar() {
     const [po, setPo] = React.useState('');
@@ -9,6 +53,11 @@ function SearchBar() {
     const handleChange = (event) => {
         setPo(event.target.value);
     };
+
+    const options = [
+        { value: 10, label: 'Ten' },
+        { value: 20, label: 'Twenty' },
+    ];
 
     return (
         <Box sx={{
@@ -18,48 +67,15 @@ function SearchBar() {
             p: 1, 
             bgcolor: 'background.paper', 
             borderRadius: 1, 
-            boxShadow: 1 // Add shadow for better visibility
+            boxShadow: 1 
         }}>
             <IconButton>
                 <SearchIcon />
             </IconButton>
-            <TextField
-                size="small"
-                label="Coy id"
-                variant="outlined"
-                sx={{ flex: 1 }} // Flexible growth to use available space
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton>
-                                <EqualizerIcon />
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                }}
-            />
-            <FormControl size="small" variant="outlined" sx={{ minWidth: 120 }}>
-                <InputLabel id="po-label">PO</InputLabel>
-                <Select
-                    labelId="po-label"
-                    id="po-select"
-                    value={po}
-                    onChange={handleChange}
-                    label="PO"
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                </Select>
-            </FormControl>
-            <TextField
-                size="small"
-                label="Order no"
-                variant="outlined"
-                sx={{ flex: 1 }} // Flexible growth to use available space
-            />
-            <Button variant="contained" color="primary" startIcon={<SearchIcon />}>
-                Search
-            </Button>
+            <TextInputWithIcon label="Coy id" endIcon={<EqualizerIcon />} />
+            <SelectInput label="PO" value={po} onChange={handleChange} options={options} />
+            <TextInputWithIcon label="Order no" />
+            <SearchButton />
         </Box>
     );
 }
